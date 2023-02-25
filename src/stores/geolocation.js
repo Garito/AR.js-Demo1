@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 
 const createLocationStore = () => {
+  let id;
   const { subscribe, set } = writable({ lat: 0, lon: 0, acc: 0 });
 
   const success = pos => {
@@ -11,9 +12,11 @@ const createLocationStore = () => {
 
   const init = userOpts => {
     const defautOpts = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-    navigator.geolocation.getCurrentPosition(success, error, Object.assign({}, defautOpts, userOpts));
+    id = navigator.geolocation.watchPosition(success, error, Object.assign({}, defautOpts, userOpts));
   }
 
-  return { subscribe, init }
+  const close = () => { navigator.geolocation.clearWatch(id) }
+
+  return { subscribe, init, close }
 }
 export const currentLocation = createLocationStore();

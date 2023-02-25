@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host 0.0.0.0 --https",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
@@ -11,6 +11,7 @@
 		"@ar-js-org/ar.js": "^3.4.4",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@vitejs/plugin-basic-ssl": "^1.0.1",
 		"autoprefixer": "^10.4.13",
 		"postcss": "^8.4.21",
 		"svelte": "^3.54.0",
